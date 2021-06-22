@@ -1,0 +1,58 @@
+[
+ {
+  "directory": "/home/will/CLionProjects/grpcDemo", 
+  "arguments": [
+   "g++", 
+   "-std=c++11", 
+   "-pthread", 
+   "-I/usr/local/include", 
+   "-c", 
+   "-o", 
+   "public_server.o", 
+   "public_server.cc"
+  ], 
+  "file": "public_server.cc"
+ }, 
+ {
+  "directory": "/home/will/CLionProjects/grpcDemo", 
+  "arguments": [
+   "g++", 
+   "-std=c++11", 
+   "-pthread", 
+   "-I/usr/local/include", 
+   "-c", 
+   "-o", 
+   "data_user.o", 
+   "data_user.cc"
+  ], 
+  "file": "data_user.cc"
+ }, 
+ {
+  "directory": "/home/will/CLionProjects/grpcDemo", 
+  "arguments": [
+   "g++", 
+   "-std=c++11", 
+   "-pthread", 
+   "-I/usr/local/include", 
+   "-c", 
+   "-o", 
+   "private_server.o", 
+   "private_server.cc"
+  ], 
+  "file": "private_server.cc"
+ }, 
+ {
+  "directory": "/home/will/CLionProjects/grpcDemo", 
+  "arguments": [
+   "g++", 
+   "-std=c++11", 
+   "-pthread", 
+   "-I/usr/local/include", 
+   "-c", 
+   "-o", 
+   "data_owner.o", 
+   "data_owner.cc"
+  ], 
+  "file": "data_owner.cc"
+ }
+]

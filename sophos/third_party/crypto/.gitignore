@@ -1,0 +1,35 @@
+# local config file
+config.scons
+
+# scons and build results
+.sconsign.dblite
+.sconf_temp
+config.log
+*.o
+build
+bin
+
+debug_crypto
+check
+check_ci
+library
+
+# Ignore files downloaded by the CI
+boost_1_60_0.tar.gz
+boost_1_60_0/
+src/boost
+
+# MacOS
+.DS_Store
+
+# XCode
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+xcshareddata

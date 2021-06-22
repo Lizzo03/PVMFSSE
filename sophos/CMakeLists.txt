@@ -1,0 +1,296 @@
+cmake_minimum_required(VERSION 3.19)
+project(sophos)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(build)
+include_directories(build/aux)
+include_directories(src)
+include_directories(src/aux)
+include_directories(third_party/crypto/library)
+include_directories(third_party/crypto/library/include)
+include_directories(third_party/crypto/library/include/sse)
+include_directories(third_party/crypto/library/include/sse/crypto)
+include_directories(third_party/crypto/src)
+include_directories(third_party/crypto/src/aesni)
+include_directories(third_party/crypto/src/aez)
+include_directories(third_party/crypto/src/ecmh)
+include_directories(third_party/crypto/src/ecmh/array_view)
+include_directories(third_party/crypto/src/ecmh/binary_elliptic_curve)
+include_directories(third_party/crypto/src/ecmh/binary_field)
+include_directories(third_party/crypto/src/ecmh/binary_field/detail)
+include_directories(third_party/crypto/src/ecmh/hash)
+include_directories(third_party/crypto/src/ecmh/multiset_hash)
+include_directories(third_party/crypto/src/ecmh/multiset_hash/detail)
+include_directories(third_party/crypto/src/ecmh/openssl)
+include_directories(third_party/crypto/src/ecmh/utility)
+include_directories(third_party/crypto/src/hash)
+include_directories(third_party/crypto/src/hash/blake2b)
+include_directories(third_party/crypto/src/hash/blake2s)
+include_directories(third_party/crypto/tests)
+include_directories(third_party/db-parser/library)
+include_directories(third_party/db-parser/library/include)
+include_directories(third_party/db-parser/library/include/sse)
+include_directories(third_party/db-parser/library/include/sse/dbparser)
+include_directories(third_party/db-parser/library/include/sse/dbparser/rapidjson)
+include_directories(third_party/db-parser/library/include/sse/dbparser/rapidjson/error)
+include_directories(third_party/db-parser/library/include/sse/dbparser/rapidjson/internal)
+include_directories(third_party/db-parser/library/include/sse/dbparser/rapidjson/msinttypes)
+include_directories(third_party/db-parser/src)
+include_directories(third_party/db-parser/src/json)
+include_directories(third_party/db-parser/src/json/rapidjson)
+include_directories(third_party/db-parser/src/json/rapidjson/error)
+include_directories(third_party/db-parser/src/json/rapidjson/internal)
+include_directories(third_party/db-parser/src/json/rapidjson/msinttypes)
+include_directories(third_party/ssdmap/library)
+include_directories(third_party/ssdmap/library/include)
+include_directories(third_party/ssdmap/library/include/ssdmap)
+include_directories(third_party/ssdmap/src)
+
+add_executable(sophos
+        build/aux/db_generator.cpp
+        build/aux/db_generator.hpp
+        build/logger.cpp
+        build/logger.hpp
+        build/medium_storage_sophos_client.cpp
+        build/medium_storage_sophos_client.hpp
+        build/rocksdb_wrapper.hpp
+        build/sophos.grpc.pb.cc
+        build/sophos.grpc.pb.h
+        build/sophos.pb.cc
+        build/sophos.pb.h
+        build/sophos_client_runner.cpp
+        build/sophos_client_runner.hpp
+        build/sophos_core.cpp
+        build/sophos_core.hpp
+        build/sophos_net_types.hpp
+        build/sophos_server_runner.cpp
+        build/sophos_server_runner.hpp
+        build/thread_pool.hpp
+        build/utils.cpp
+        build/utils.hpp
+        src/aux/db_generator.cpp
+        src/aux/db_generator.hpp
+        src/logger.cpp
+        src/logger.hpp
+        src/medium_storage_sophos_client.cpp
+        src/medium_storage_sophos_client.hpp
+        src/rocksdb_wrapper.hpp
+        src/sophos_client_runner.cpp
+        src/sophos_client_runner.hpp
+        src/sophos_core.cpp
+        src/sophos_core.hpp
+        src/sophos_net_types.hpp
+        src/sophos_server_runner.cpp
+        src/sophos_server_runner.hpp
+        src/thread_pool.hpp
+        src/utils.cpp
+        src/utils.hpp
+        third_party/crypto/library/include/sse/crypto/block_hash.hpp
+        third_party/crypto/library/include/sse/crypto/cipher.hpp
+        third_party/crypto/library/include/sse/crypto/fpe.hpp
+        third_party/crypto/library/include/sse/crypto/hash.hpp
+        third_party/crypto/library/include/sse/crypto/hmac.hpp
+        third_party/crypto/library/include/sse/crypto/prf.hpp
+        third_party/crypto/library/include/sse/crypto/prg.hpp
+        third_party/crypto/library/include/sse/crypto/random.hpp
+        third_party/crypto/library/include/sse/crypto/set_hash.hpp
+        third_party/crypto/library/include/sse/crypto/tdp.hpp
+        third_party/crypto/library/include/sse/crypto/utils.hpp
+        third_party/crypto/src/aesni/aesni.cpp
+        third_party/crypto/src/aesni/aesni.hpp
+        third_party/crypto/src/aez/aez.c
+        third_party/crypto/src/aez/aez.h
+        third_party/crypto/src/ecmh/array_view/array_view.hpp
+        third_party/crypto/src/ecmh/array_view/is_contiguous.hpp
+        third_party/crypto/src/ecmh/binary_elliptic_curve/add.hpp
+        third_party/crypto/src/ecmh/binary_elliptic_curve/compress_point.hpp
+        third_party/crypto/src/ecmh/binary_elliptic_curve/GLS254.cpp
+        third_party/crypto/src/ecmh/binary_elliptic_curve/GLS254.hpp
+        third_party/crypto/src/ecmh/binary_elliptic_curve/Point.hpp
+        third_party/crypto/src/ecmh/binary_elliptic_curve/sw.hpp
+        third_party/crypto/src/ecmh/binary_elliptic_curve/sw_blinded.hpp
+        third_party/crypto/src/ecmh/binary_field/detail/apply_linear_table_transform.hpp
+        third_party/crypto/src/ecmh/binary_field/detail/field_operation_helpers.hpp
+        third_party/crypto/src/ecmh/binary_field/detail/GF2.hpp
+        third_party/crypto/src/ecmh/binary_field/detail/limb.hpp
+        third_party/crypto/src/ecmh/binary_field/detail/limb_ops.hpp
+        third_party/crypto/src/ecmh/binary_field/detail/polynomial_base.hpp
+        third_party/crypto/src/ecmh/binary_field/detail/polynomial_multiply.hpp
+        third_party/crypto/src/ecmh/binary_field/detail/polynomial_reduce_127_63.hpp
+        third_party/crypto/src/ecmh/binary_field/assign_hash.hpp
+        third_party/crypto/src/ecmh/binary_field/batch_invert.hpp
+        third_party/crypto/src/ecmh/binary_field/compute_linear_operation_table.hpp
+        third_party/crypto/src/ecmh/binary_field/generic_half_trace.hpp
+        third_party/crypto/src/ecmh/binary_field/generic_trace.hpp
+        third_party/crypto/src/ecmh/binary_field/GF2_127_63.cpp
+        third_party/crypto/src/ecmh/binary_field/GF2_127_63.hpp
+        third_party/crypto/src/ecmh/binary_field/GF2_254.hpp
+        third_party/crypto/src/ecmh/binary_field/GF2m.hpp
+        third_party/crypto/src/ecmh/binary_field/invert_blinded.hpp
+        third_party/crypto/src/ecmh/binary_field/QuadraticExtension.hpp
+        third_party/crypto/src/ecmh/binary_field/solve_quadratic_blinded.hpp
+        third_party/crypto/src/ecmh/hash/hash_expand.hpp
+        third_party/crypto/src/ecmh/multiset_hash/detail/operation_helpers.hpp
+        third_party/crypto/src/ecmh/multiset_hash/AdHash.hpp
+        third_party/crypto/src/ecmh/multiset_hash/ECMH.hpp
+        third_party/crypto/src/ecmh/multiset_hash/MuHash.hpp
+        third_party/crypto/src/ecmh/openssl/bn.hpp
+        third_party/crypto/src/ecmh/openssl/error.hpp
+        third_party/crypto/src/ecmh/openssl/evp.hpp
+        third_party/crypto/src/ecmh/openssl/thread_safety.hpp
+        third_party/crypto/src/ecmh/utility/assign_endian.hpp
+        third_party/crypto/src/ecmh/utility/division.hpp
+        third_party/crypto/src/ecmh/utility/enable_if.hpp
+        third_party/crypto/src/ecmh/utility/is_byte.hpp
+        third_party/crypto/src/ecmh/utility/is_resizable_container.hpp
+        third_party/crypto/src/ecmh/utility/logical.hpp
+        third_party/crypto/src/ecmh/utility/print.hpp
+        third_party/crypto/src/ecmh/utility/print_fwd.hpp
+        third_party/crypto/src/ecmh/utility/static_repeat.hpp
+        third_party/crypto/src/ecmh/ctr_drbg.hpp
+        third_party/crypto/src/ecmh/hugepages.hpp
+        third_party/crypto/src/hash/blake2b/blake2-config.h
+        third_party/crypto/src/hash/blake2b/blake2b-load-sse2.h
+        third_party/crypto/src/hash/blake2b/blake2b-load-sse41.h
+        third_party/crypto/src/hash/blake2b/blake2b-round.h
+        third_party/crypto/src/hash/blake2b/blake2b.cpp
+        third_party/crypto/src/hash/blake2b/blake2b.hpp
+        third_party/crypto/src/hash/blake2s/blake2-config.h
+        third_party/crypto/src/hash/blake2s/blake2s-load-sse2.h
+        third_party/crypto/src/hash/blake2s/blake2s-load-sse41.h
+        third_party/crypto/src/hash/blake2s/blake2s-load-xop.h
+        third_party/crypto/src/hash/blake2s/blake2s-round.h
+        third_party/crypto/src/hash/blake2s/blake2s.cpp
+        third_party/crypto/src/hash/blake2s/blake2s.hpp
+        third_party/crypto/src/hash/sha512/sha512_base.c
+        third_party/crypto/src/hash/sha512.cpp
+        third_party/crypto/src/hash/sha512.hpp
+        third_party/crypto/src/block_hash.cpp
+        third_party/crypto/src/block_hash.hpp
+        third_party/crypto/src/cipher.cpp
+        third_party/crypto/src/cipher.hpp
+        third_party/crypto/src/fpe.cpp
+        third_party/crypto/src/fpe.hpp
+        third_party/crypto/src/hash.cpp
+        third_party/crypto/src/hash.hpp
+        third_party/crypto/src/hmac.hpp
+        third_party/crypto/src/prf.hpp
+        third_party/crypto/src/prg.cpp
+        third_party/crypto/src/prg.hpp
+        third_party/crypto/src/random.cpp
+        third_party/crypto/src/random.hpp
+        third_party/crypto/src/set_hash.cpp
+        third_party/crypto/src/set_hash.hpp
+        third_party/crypto/src/tdp.cpp
+        third_party/crypto/src/tdp.hpp
+        third_party/crypto/src/utils.cpp
+        third_party/crypto/src/utils.hpp
+        third_party/crypto/tests/boost_test_include.hpp
+        third_party/crypto/tests/encryption.cpp
+        third_party/crypto/tests/encryption.hpp
+        third_party/crypto/tests/hashing.cpp
+        third_party/crypto/tests/hashing.hpp
+        third_party/crypto/tests/test_block_hash.cpp
+        third_party/crypto/tests/test_block_hash.hpp
+        third_party/crypto/tests/test_ecmh.cpp
+        third_party/crypto/tests/test_ecmh.hpp
+        third_party/crypto/tests/test_fpe.cpp
+        third_party/crypto/tests/test_fpe.hpp
+        third_party/crypto/tests/test_hmac.cpp
+        third_party/crypto/tests/test_hmac.hpp
+        third_party/crypto/tests/test_prg.cpp
+        third_party/crypto/tests/test_prg.hpp
+        third_party/crypto/tests/test_tdp.cpp
+        third_party/crypto/tests/test_tdp.hpp
+        third_party/crypto/checks.cpp
+        third_party/crypto/main.cpp
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/error/en.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/error/error.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/internal/biginteger.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/internal/diyfp.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/internal/dtoa.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/internal/ieee754.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/internal/itoa.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/internal/meta.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/internal/pow10.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/internal/regex.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/internal/stack.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/internal/strfunc.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/internal/strtod.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/internal/swap.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/msinttypes/inttypes.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/msinttypes/stdint.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/allocators.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/document.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/encodedstream.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/encodings.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/filereadstream.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/filewritestream.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/fwd.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/istreamwrapper.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/memorybuffer.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/memorystream.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/ostreamwrapper.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/pointer.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/prettywriter.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/rapidjson.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/reader.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/schema.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/stream.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/stringbuffer.h
+        third_party/db-parser/library/include/sse/dbparser/rapidjson/writer.h
+        third_party/db-parser/library/include/sse/dbparser/DBParser.h
+        third_party/db-parser/library/include/sse/dbparser/DBParserJSON.h
+        third_party/db-parser/src/json/rapidjson/error/en.h
+        third_party/db-parser/src/json/rapidjson/error/error.h
+        third_party/db-parser/src/json/rapidjson/internal/biginteger.h
+        third_party/db-parser/src/json/rapidjson/internal/diyfp.h
+        third_party/db-parser/src/json/rapidjson/internal/dtoa.h
+        third_party/db-parser/src/json/rapidjson/internal/ieee754.h
+        third_party/db-parser/src/json/rapidjson/internal/itoa.h
+        third_party/db-parser/src/json/rapidjson/internal/meta.h
+        third_party/db-parser/src/json/rapidjson/internal/pow10.h
+        third_party/db-parser/src/json/rapidjson/internal/regex.h
+        third_party/db-parser/src/json/rapidjson/internal/stack.h
+        third_party/db-parser/src/json/rapidjson/internal/strfunc.h
+        third_party/db-parser/src/json/rapidjson/internal/strtod.h
+        third_party/db-parser/src/json/rapidjson/internal/swap.h
+        third_party/db-parser/src/json/rapidjson/msinttypes/inttypes.h
+        third_party/db-parser/src/json/rapidjson/msinttypes/stdint.h
+        third_party/db-parser/src/json/rapidjson/allocators.h
+        third_party/db-parser/src/json/rapidjson/document.h
+        third_party/db-parser/src/json/rapidjson/encodedstream.h
+        third_party/db-parser/src/json/rapidjson/encodings.h
+        third_party/db-parser/src/json/rapidjson/filereadstream.h
+        third_party/db-parser/src/json/rapidjson/filewritestream.h
+        third_party/db-parser/src/json/rapidjson/fwd.h
+        third_party/db-parser/src/json/rapidjson/istreamwrapper.h
+        third_party/db-parser/src/json/rapidjson/memorybuffer.h
+        third_party/db-parser/src/json/rapidjson/memorystream.h
+        third_party/db-parser/src/json/rapidjson/ostreamwrapper.h
+        third_party/db-parser/src/json/rapidjson/pointer.h
+        third_party/db-parser/src/json/rapidjson/prettywriter.h
+        third_party/db-parser/src/json/rapidjson/rapidjson.h
+        third_party/db-parser/src/json/rapidjson/reader.h
+        third_party/db-parser/src/json/rapidjson/schema.h
+        third_party/db-parser/src/json/rapidjson/stream.h
+        third_party/db-parser/src/json/rapidjson/stringbuffer.h
+        third_party/db-parser/src/json/rapidjson/writer.h
+        third_party/db-parser/src/json/DBParserJSON.cpp
+        third_party/db-parser/src/json/DBParserJSON.h
+        third_party/db-parser/src/DBParser.cpp
+        third_party/db-parser/src/DBParser.h
+        third_party/db-parser/test/main.cpp
+        third_party/ssdmap/library/include/ssdmap/bucket_array.hpp
+        third_party/ssdmap/library/include/ssdmap/bucket_map.hpp
+        third_party/ssdmap/library/include/ssdmap/mmap_util.h
+        third_party/ssdmap/src/bucket_array.hpp
+        third_party/ssdmap/src/bucket_map.hpp
+        third_party/ssdmap/src/mmap_util.c
+        third_party/ssdmap/src/mmap_util.h
+        third_party/ssdmap/checks.cpp
+        third_party/ssdmap/main.cpp
+        client_main.cpp
+        main.cpp
+        server_main.cpp)

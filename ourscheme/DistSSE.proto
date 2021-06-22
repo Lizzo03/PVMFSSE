@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option java_package = "ex.grpc";
+
+package DistSSE;
+
+// Defines the service
+service MathTest {
+  // Function invoked to send the request
+  rpc sendRequest (MathRequest) returns (MathReply) {}
+}
+
+// The request message containing requested numbers
+message MathRequest {
+  int32 a = 1;
+  int32 b = 2;
+}
+
+// The response message containing response
+message MathReply {
+  int32 result = 1;
+}
+
+service RPC {
+  // Function invoked to send the request
+  rpc registration (Registration) returns (ExecuteStatus) {}
+  rpc update (Update) returns (ExecuteStatus) {}
+  rpc batch_update (stream Update) returns ( ExecuteStatus ) {}
+  rpc search (Search) returns (ExecuteStatus) {}
+  rpc revocation (Revocation) returns (ExecuteStatus) {}
+}
+
+message Registration
+{
+  bytes eid = 1;
+  bytes qkid = 2;
+  bytes qkcid = 3;
+  bytes kid = 4;
+  bytes uid = 5;
+}
+
+message Update
+{
+  bytes wst = 1;
+  bytes adrf = 2;
+  bytes e = 3;
+}
+
+message Search
+{
+  bytes trid = 1;
+  bytes eid = 2;
+  bytes token = 3;
+  bytes rst = 4;
+  repeated bytes sf = 5;
+}
+
+message Revocation
+{
+  bytes eid = 1;
+}
+
+message ExecuteStatus
+{
+  bool status = 1;
+}

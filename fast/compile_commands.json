@@ -1,0 +1,155 @@
+[
+ {
+  "directory": "/home/will/VFSSSE/fast", 
+  "arguments": [
+   "g++", 
+   "-std=c++11", 
+   "-O3", 
+   "-I/usr/local/include", 
+   "-I/usr/local/include/cryptopp", 
+   "-I.", 
+   "-pthread", 
+   "-c", 
+   "-o", 
+   "logger.o", 
+   "logger.cc"
+  ], 
+  "file": "logger.cc"
+ }, 
+ {
+  "directory": "/home/will/VFSSSE/fast", 
+  "arguments": [
+   "g++", 
+   "-std=c++11", 
+   "-O3", 
+   "-I/usr/local/include", 
+   "-I/usr/local/include/cryptopp", 
+   "-I.", 
+   "-pthread", 
+   "-c", 
+   "-o", 
+   "DistSSE.grpc.pb.o", 
+   "DistSSE.grpc.pb.cc"
+  ], 
+  "file": "DistSSE.grpc.pb.cc"
+ }, 
+ {
+  "directory": "/home/will/VFSSSE/fast", 
+  "arguments": [
+   "g++", 
+   "-std=c++11", 
+   "-O3", 
+   "-I/usr/local/include", 
+   "-I/usr/local/include/cryptopp", 
+   "-I.", 
+   "-pthread", 
+   "-c", 
+   "-o", 
+   "rpc_client.o", 
+   "rpc_client.cc"
+  ], 
+  "file": "rpc_client.cc"
+ }, 
+ {
+  "directory": "/home/will/VFSSSE/fast", 
+  "arguments": [
+   "g++", 
+   "-std=c++11", 
+   "-O3", 
+   "-I/usr/local/include", 
+   "-I/usr/local/include/cryptopp", 
+   "-I.", 
+   "-pthread", 
+   "-c", 
+   "-o", 
+   "reset_csdb.o", 
+   "reset_csdb.cc"
+  ], 
+  "file": "reset_csdb.cc"
+ }, 
+ {
+  "directory": "/home/will/VFSSSE/fast", 
+  "arguments": [
+   "g++", 
+   "-std=c++11", 
+   "-O3", 
+   "-I/usr/local/include", 
+   "-I/usr/local/include/cryptopp", 
+   "-I.", 
+   "-pthread", 
+   "-c", 
+   "-o", 
+   "random_db.o", 
+   "random_db.cc"
+  ], 
+  "file": "random_db.cc"
+ }, 
+ {
+  "directory": "/home/will/VFSSSE/fast", 
+  "arguments": [
+   "g++", 
+   "-std=c++11", 
+   "-O3", 
+   "-I/usr/local/include", 
+   "-I/usr/local/include/cryptopp", 
+   "-I.", 
+   "-pthread", 
+   "-c", 
+   "-o", 
+   "rpc_server.o", 
+   "rpc_server.cc"
+  ], 
+  "file": "rpc_server.cc"
+ }, 
+ {
+  "directory": "/home/will/VFSSSE/fast", 
+  "arguments": [
+   "g++", 
+   "-std=c++11", 
+   "-O3", 
+   "-I/usr/local/include", 
+   "-I/usr/local/include/cryptopp", 
+   "-I.", 
+   "-pthread", 
+   "-c", 
+   "-o", 
+   "DistSSE.Util.o", 
+   "DistSSE.Util.cc"
+  ], 
+  "file": "DistSSE.Util.cc"
+ }, 
+ {
+  "directory": "/home/will/VFSSSE/fast", 
+  "arguments": [
+   "g++", 
+   "-std=c++11", 
+   "-O3", 
+   "-I/usr/local/include", 
+   "-I/usr/local/include/cryptopp", 
+   "-I.", 
+   "-pthread", 
+   "-c", 
+   "-o", 
+   "DistSSE.pb.o", 
+   "DistSSE.pb.cc"
+  ], 
+  "file": "DistSSE.pb.cc"
+ }, 
+ {
+  "directory": "/home/will/VFSSSE/fast", 
+  "arguments": [
+   "g++", 
+   "-std=c++11", 
+   "-O3", 
+   "-I/usr/local/include", 
+   "-I/usr/local/include/cryptopp", 
+   "-I.", 
+   "-pthread", 
+   "-c", 
+   "-o", 
+   "benchmark.o", 
+   "benchmark.cc"
+  ], 
+  "file": "benchmark.cc"
+ }
+]

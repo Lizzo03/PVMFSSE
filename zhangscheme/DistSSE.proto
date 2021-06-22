@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package DistSSE;
+
+service RPC {
+
+// Setup
+rpc setup (SetupRequestMessage) returns ( ExecuteStatus ) {}
+
+// Search
+rpc search (SearchRequestMessage) returns (stream SearchReply) {}
+
+// Update
+rpc update (UpdateRequestMessage) returns ( ExecuteStatus ) {}
+rpc batch_update (stream UpdateRequestMessage) returns ( ExecuteStatus ) {}
+
+// only used for experiment simulation
+rpc cache (CacheRequestMessage) returns ( ExecuteStatus ) {}
+rpc batch_cache (stream CacheRequestMessage) returns ( ExecuteStatus ) {}
+
+}
+
+message SetupRequestMessage
+{
+    uint64 setup_size = 1;
+    // bytes public_key = 2;
+}
+
+message SearchRequestMessage
+{
+    //bytes kw = 1;
+    bytes tw = 2;
+	uint64 uc = 3; // update after last search
+}
+
+
+message SearchReply
+{
+	bytes ind = 1;
+
+}
+
+message CacheRequestMessage
+{
+    bytes tw = 1;
+    bytes inds = 2;
+}
+
+message UpdateRequestMessage
+{
+    bytes l = 1;
+    bytes e = 2;
+	//uint64 counter = 3;
+}
+
+message ExecuteStatus
+{
+	bool status = 1; 
+}

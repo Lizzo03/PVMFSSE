@@ -1,0 +1,6 @@
+Import('*')
+
+files = Glob('*.cpp') + Glob('*.c')
+objs = env.Object(files)
+
+Return('objs')
